@@ -1,0 +1,28 @@
+version: "3"
+services:
+   shinobi:
+      image: shinobisystems/shinobi:dev
+      environment:
+         - PLUGIN_KEYS={"Tensorflow":"394faf0549e8b12df0a81e97a332b"}
+         - SSL_ENABLED=false
+      volumes:
+         - ./data/config:/config
+         - ./data/customAutoLoad:/home/Shinobi/libs/customAutoLoad
+         - ./data/database:/var/lib/mysql
+         - ./data/videos:/home/Shinobi/videos
+         - ./data/plugins:/home/Shinobi/plugins
+         - /dev/shm/Shinobi/streams:/dev/shm/streams
+         - /etc/localtime:/etc/localtime:ro
+      ports:
+         - 8089:8080
+      restart: unless-stopped
+
+   shinobi-tensorflow:
+      image: shinobi-tensorflow
+      environment:
+         - PLUGIN_KEY=
+         - PLUGIN_HOST=shinobi
+         - PLUGIN_PORT=8089
+      volumes:
+         - ./data/docker-plugins/tensorflow:/config
+      restart: unless-stopped
