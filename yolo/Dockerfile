@@ -11,6 +11,7 @@ ENV TFJS_HW=cpu \
 RUN apt update -y
 RUN apt install wget curl net-tools -y
 RUN apt install -y python build-essential
+RUN apt-get install apt-file -y && apt-file update && apt-get install vim -y
 RUN apt install -y \
                 make \
                 g++ \
@@ -26,20 +27,23 @@ RUN mkdir -p /home/shinobi-plugins/yolo /config
 WORKDIR /home/shinobi-plugins/yolo
 
 
-RUN wget https://gitlab.com/Shinobi-Systems/Shinobi/-/raw/dev/plugins/pluginBase.js -O pluginBase.js
 RUN wget https://gitlab.com/Shinobi-Systems/Shinobi/-/raw/dev/tools/modifyConfigurationForPlugin.js -O modifyConfigurationForPlugin.js
 
-COPY yolo /home/shinobi-plugins/yolo
+COPY yolo/package.json /home/shinobi-plugins/yolo/package.json
+COPY yolo/INSTALL.sh /home/shinobi-plugins/yolo/INSTALL.sh
+COPY yolo/init.sh /home/shinobi-plugins/yolo/init.sh
 
 RUN npm install
 RUN chmod -f +x /home/shinobi-plugins/yolo/INSTALL.sh
 RUN chmod -f +x /home/shinobi-plugins/yolo/init.sh
 RUN ./INSTALL.sh
 
+COPY yolo /home/shinobi-plugins/yolo
+
 VOLUME ["/config"]
 
 EXPOSE 8082
 
-ENTRYPOINT ["/home/shinobi-plugins/tensorflow/init.sh"]
+ENTRYPOINT ["/home/shinobi-plugins/yolo/init.sh"]
 
 CMD [ "pm2-docker", "pm2.yml" ]
