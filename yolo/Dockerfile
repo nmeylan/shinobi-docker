@@ -31,14 +31,13 @@ RUN wget https://gitlab.com/Shinobi-Systems/Shinobi/-/raw/dev/tools/modifyConfig
 
 COPY yolo/package.json /home/shinobi-plugins/yolo/package.json
 COPY yolo/INSTALL.sh /home/shinobi-plugins/yolo/INSTALL.sh
-COPY yolo/init.sh /home/shinobi-plugins/yolo/init.sh
 
 RUN npm install
 RUN chmod -f +x /home/shinobi-plugins/yolo/INSTALL.sh
-RUN chmod -f +x /home/shinobi-plugins/yolo/init.sh
 RUN ./INSTALL.sh
 
 COPY yolo /home/shinobi-plugins/yolo
+RUN chmod -f +x /home/shinobi-plugins/yolo/init.sh
 
 VOLUME ["/config"]
 
