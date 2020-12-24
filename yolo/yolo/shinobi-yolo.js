@@ -14,7 +14,6 @@ var s
 try{
     s = require('../pluginBase.js')(__dirname,config)
 }catch(err){
-    console.log(err)
     try{
         s = require('./pluginBase.js')(__dirname,config)
     }catch(err){
