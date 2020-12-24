@@ -30,9 +30,9 @@ WORKDIR /home/shinobi-plugins/yolo
 RUN wget https://gitlab.com/Shinobi-Systems/Shinobi/-/raw/dev/tools/modifyConfigurationForPlugin.js -O modifyConfigurationForPlugin.js
 
 COPY yolo/package.json /home/shinobi-plugins/yolo/package.json
-COPY yolo/INSTALL.sh /home/shinobi-plugins/yolo/INSTALL.sh
-
 RUN npm install
+
+COPY yolo/INSTALL.sh /home/shinobi-plugins/yolo/INSTALL.sh
 RUN chmod -f +x /home/shinobi-plugins/yolo/INSTALL.sh
 RUN ./INSTALL.sh
 
