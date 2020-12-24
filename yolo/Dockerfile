@@ -37,6 +37,7 @@ RUN chmod -f +x /home/shinobi-plugins/yolo/INSTALL.sh
 RUN ./INSTALL.sh
 
 COPY yolo /home/shinobi-plugins/yolo
+COPY yolo/node-yolo-patch.js /home/shinobi-plugins/yolo/node_modules/node-yolo-shinobi/index.js
 RUN chmod -f +x /home/shinobi-plugins/yolo/init.sh
 
 VOLUME ["/config"]

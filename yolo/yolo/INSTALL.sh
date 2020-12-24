@@ -28,10 +28,10 @@ echo "============="
 echo "Shinobi - Do you want to Install Tiny Weights?"
 echo "This is better for Graphics Cards with less than 4GB RAM"
 echo "(y)es or (N)o"
-weightNameExtension=""
+weightNameExtension="-tiny"
 read tinyweights
-if [ "$tinyweights" = "y" ] || [ "$tinyweights" = "Y" ]; then
-    weightNameExtension="-tiny"
+if [ "$tinyweights" = "n" ] || [ "$tinyweights" = "N" ]; then
+    weightNameExtension=""
 fi
 echo "-----------------------------------"
 if [ ! -d "models" ]; then
