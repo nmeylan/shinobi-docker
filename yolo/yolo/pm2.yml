@@ -1,0 +1,4 @@
+apps:
+  - script   : '/home/shinobi-plugins/yolo/shinobi-yolo.js'
+    name     : 'shinobi-yolo'
+    kill_timeout  : 5000

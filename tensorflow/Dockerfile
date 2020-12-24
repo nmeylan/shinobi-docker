@@ -43,8 +43,7 @@ RUN npm install @tensorflow/tfjs@1.7.3 \
                 moment@2.19.2 \
                 socket.io@2.0.4 \
                 socket.io-client@1.7.4
-RUN pip uninstall tensorflow
-RUN pip install tensorflow==1.5
+                
 RUN chmod -f +x /home/shinobi-plugins/tensorflow/init.sh
 
 

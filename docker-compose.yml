@@ -17,12 +17,12 @@ services:
          - 8089:8080
       restart: unless-stopped
 
-   shinobi-tensorflow:
-      image: shinobi-tensorflow
+   shinobi-yolo:
+      image: shinobi-yolo
       environment:
-         - PLUGIN_KEY=
+         - PLUGIN_KEY=394faf0549e8b12df0a81e97a332b
          - PLUGIN_HOST=shinobi
          - PLUGIN_PORT=8089
       volumes:
-         - ./data/docker-plugins/tensorflow:/config
+         - ./data/docker-plugins/yolo:/config
       restart: unless-stopped
