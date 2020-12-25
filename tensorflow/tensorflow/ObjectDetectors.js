@@ -10,8 +10,7 @@ module.exports = function(config){
       break;
       default:
           try{
-              tfjsSuffix = '-gpu'
-              var tf = require('@tensorflow/tfjs-node-gpu')
+            var tf = require('@tensorflow/tfjs-node')
           }catch(err){
               console.log(err)
           }
@@ -19,7 +18,6 @@ module.exports = function(config){
   }
 
   const cocossd = require('@tensorflow-models/coco-ssd');
-  // const mobilenet = require('@tensorflow-models/mobilenet');
 
 
   async function loadCocoSsdModal() {
@@ -29,15 +27,6 @@ module.exports = function(config){
       })
       return modal;
   }
-
-  // async function loadMobileNetModal() {
-  //     const modal = await mobilenet.load({
-  //         version: 1,
-  //         alpha: 0.25 | .50 | .75 | 1.0,
-  //     })
-  //     return modal;
-  // }
-
   function getTensor3dObject(numOfChannels,imageArray) {
 
       const tensor3d = tf.node.decodeJpeg( imageArray, numOfChannels );
